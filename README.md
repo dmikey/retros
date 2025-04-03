@@ -10,7 +10,7 @@ Welcome to **RetrOS** – a clean, stable custom firmware for clone R36S handhel
 
 RetrOS is based on a hybrid build from factory NAND firmware, fused with stable bootloader components from ArkOS. It combines:
 
-- ✅ **U-Boot & GPT** from ArkOS — ensuring reliable boots on any card size
+- ✅ **MBR** from K36 Clean — ensuring reliable boots on any card size
 - ✅ **Custom kernel + DTB** for R36S (rk3536 variant) with correct analog stick mapping
 - ✅ **Direct NAND extraction** of factory system partition
 - ✅ **Fixed splash screen support** (logo_kernel + system splash)
