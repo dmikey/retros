@@ -29,16 +29,6 @@ RetrOS is based on a hybrid build from factory NAND firmware, fused with stable 
 
 ---
 
-## 📦 Files in This Repo
-
-- `RetrOS-hybrid.img` – Final bootable image (TF1-bootable)
-- `media/retros.png` – RetrOS splash/branding art
-- `extlinux.conf` – Reference config
-- `boot_partition.img` – Just the FAT32 partition for manual patching
-- `rf3536k3ka.dtb` – Device tree blob for R36S
-
----
-
 ## 🛠 Use Cases
 
 - 🧪 **Reverse engineering**: Full NAND mirror used for analysis
