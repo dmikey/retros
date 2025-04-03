@@ -63,6 +63,9 @@ RetrOS is based on a hybrid build from factory NAND firmware, fused with stable 
 - Built-in busybox terminal launcher (for low-level debugging)
 - Optional RetroArch core updater integration
 - RetrOS OTA build script for kernel patching + image generation
+- More Unlock and Utility Apps
+- Update and Standalones and Cores for Offline
+- Verify all compatible Wifi Dongles
 
 ---
 
