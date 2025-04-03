@@ -16,6 +16,7 @@ Use Balena Etcher and GOOD SD Card - SD Cards with bad MBR can break easily. Bla
 
 RetrOS is based on a hybrid build from factory NAND firmware, fused with stable bootloader components from ArkOS. It combines:
 
+- ✅ **More Themes** Sourcing themes stinks, more built right in!
 - ✅ **MBR** from K36 Clean — ensuring reliable boots on any card size
 - ✅ **Custom kernel + DTB** for R36S (rk3536 variant) with correct analog stick mapping
 - ✅ **Direct NAND extraction** of factory system partition
