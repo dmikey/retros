@@ -15,7 +15,6 @@ RetrOS is based on a hybrid build from factory NAND firmware, fused with stable 
 - ✅ **Direct NAND extraction** of factory system partition
 - ✅ **Fixed splash screen support** (logo_kernel + system splash)
 - ✅ **Support for USB, WiFi (depending on module), and SSH**
-- ✅ **Optional terminal access via EmulationStation "Options" menu**
 - ✅ **Re-enabled EmulationStation features** like *Collections*, *Ports*, and *Netplay*
 
 ---
