@@ -4,6 +4,8 @@
 
 ** INTERNAL FIRMWARE VARIANTS WITH TF1 HIGHEST SUPPORT **
 
+** BRAND NEW DEVELOPMENT. PATIENCE PLEASE. **
+
 <img src="media/retros.png" width="300"/>
 
 Welcome to **RetrOS** – a clean, stable custom firmware for clone Temu R36S handhelds powered by the RK3326 SoC. RetrOS is purpose-built to boot from TF1, restoring and enhancing factory behavior with modern tweaks, deeper hardware support, and full image portability.
