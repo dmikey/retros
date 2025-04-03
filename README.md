@@ -66,12 +66,6 @@ RetrOS is based on a hybrid build from factory NAND firmware, fused with stable 
 
 ---
 
-## 🕹️ Screenshot
-
-<img src="media/splash_retroos.png" width="500"/>
-
----
-
 ## 📂 Credits
 
 - EmuELEC community
