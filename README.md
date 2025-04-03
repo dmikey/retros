@@ -1,5 +1,8 @@
 # RetrOS – Custom Firmware for Clone R36S (rk3326 Variant)
 
+DOWNLOAD .IMG.XZ
+[MEGA](https://mega.nz/file/7sABGLoJ#Fw7Yx9VQ3KhYL8dy1KE8RItUIrB7xSwjRnwRGqv4l3g)
+
 ** NOT FOR "REAL" R36S CONSOLES **
 
 ** INTERNAL FIRMWARE VARIANTS WITH TF1 HIGHEST SUPPORT **
