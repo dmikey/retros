@@ -79,4 +79,4 @@ RetrOS is based on a hybrid build from factory NAND firmware, fused with stable 
 - EmuELEC community
 - K36 Clean for bootloader base
 - RetrOS contributors for tooling, splash graphics, and testing
--[Pyntux](https://github.com/Pyntux) for rf3536k4ka.dtb
+- [Pyntux](https://github.com/Pyntux) for rf3536k4ka.dtb
