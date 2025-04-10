@@ -2,6 +2,7 @@
 
 DOWNLOAD .IMG.XZ
 [MEGA](https://mega.nz/file/7sABGLoJ#Fw7Yx9VQ3KhYL8dy1KE8RItUIrB7xSwjRnwRGqv4l3g)
+[GDRIVE](https://drive.google.com/file/d/1qwwHpT7u_4vLRawVsDFwRAlEmW0dciGb/view?usp=drive_link)
 
 ** NOT FOR "REAL" R36S CONSOLES **
 
