@@ -30,6 +30,7 @@ RetrOS is based on a hybrid build from factory NAND firmware, fused with stable 
 - ✅ **Fixed splash screen support** (logo_kernel + system splash)
 - ✅ **Support for USB, WiFi (depending on module), and SSH**
 - ✅ **Re-enabled EmulationStation features** like *Collections*, *Ports*, and *Netplay*
+- ✅ **Mount SWAP Partition on MMC** Automatically mounts `mmcblk0p4` on internal EmuElec Clones
 
 ---
 
