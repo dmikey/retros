@@ -17,7 +17,7 @@ DOWNLOAD .IMG.XZ
 
 Welcome to **RetrOS** – a clean, stable custom firmware for clone Temu R36S handhelds powered by the RK3326 SoC. RetrOS is purpose-built to boot from TF1, restoring and enhancing factory behavior with modern tweaks, deeper hardware support, and full image portability.
 
-Use Balena Etcher and GOOD SD Card - SD Cards with bad MBR can break easily. Black screen NO LED.
+Use Balena Etcher and GOOD SD Card - SD Cards with bad MBR can break easily. Black screen NO LED. (Walmart has Onn 32GB SD Card 2 Pack for $9)
 
 ---
 
