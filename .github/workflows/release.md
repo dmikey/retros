@@ -1,0 +1,55 @@
+name: Build RK3326 Kernel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-kernel:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: 🧰 Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          bc \
+          bison \
+          flex \
+          libssl-dev \
+          libncurses-dev \
+          crossbuild-essential-arm64 \
+          device-tree-compiler \
+          wget \
+          git
+
+    - name: 🐧 Clone Linux Kernel v5.10
+      run: |
+        git clone --depth=1 --branch v5.10 https://github.com/torvalds/linux.git linux-rk3326
+
+    - name: ➕ Add config and DTS
+      run: |
+        cp ./src/kernel-config.txt linux-rk3326/.config
+        cp ./src/r36s-clone.dts linux-rk3326/arch/arm64/boot/dts/rockchip/rk3326-r36s-clone.dts
+        echo 'dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-r36s-clone.dtb' >> linux-rk3326/arch/arm64/boot/dts/rockchip/Makefile
+
+    - name: ⚙️ Finalize Kernel Config
+      working-directory: linux-rk3326
+      run: |
+        make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
+
+    - name: 🛠️ Build Kernel + DTBs
+      working-directory: linux-rk3326
+      run: |
+        make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs
+
+    - name: 📤 Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: rk3326-kernel
+        path: |
+          linux-rk3326/arch/arm64/boot/Image
+          linux-rk3326/arch/arm64/boot/dts/rockchip/rk3326-r36s-clone.dtb
