@@ -2,6 +2,7 @@
 /*
  * Custom RK3326 R36S Clone Board
  */
+ /dts-v1/;
  #include "rk3326-evb-lp3-v10-linux.dts"
  
   / {
