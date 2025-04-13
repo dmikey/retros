@@ -38,9 +38,6 @@ jobs:
         cp ./src/kernel-config.txt linux-rk3326/.config
         cp ./src/r36s-clone.dts linux-rk3326/arch/arm64/boot/dts/rockchip/rk3326-r36s-clone.dts
 
-        # ✅ Add rk3326-odroid-go.dtsi if used
-        cp ./src/rk3326-odroid-go.dtsi linux-rk3326/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
-
         # Register DTS in the Makefile
         echo 'dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-r36s-clone.dtb' >> linux-rk3326/arch/arm64/boot/dts/rockchip/Makefile
 
