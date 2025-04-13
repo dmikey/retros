@@ -1,4 +1,4 @@
-name: Build RK3326 Kernel
+name: Build RK3326 Kernel (Rockchip develop-5.10)
 
 on:
   workflow_dispatch:
@@ -26,9 +26,9 @@ jobs:
           wget \
           git
 
-    - name: 🐧 Clone Linux Kernel v5.10
+    - name: 🐧 Clone Rockchip Kernel (develop-5.10)
       run: |
-        git clone --depth=1 --branch v5.10 https://github.com/torvalds/linux.git linux-rk3326
+        git clone --depth=1 --branch develop-5.10 https://github.com/rockchip-linux/kernel.git linux-rk3326
 
     - name: ➕ Add config and DTS
       run: |
