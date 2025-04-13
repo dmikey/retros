@@ -1,0 +1,30 @@
+name: Decompile DTB to DTS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  decompile-dtb:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: 🧰 Install Device Tree Compiler
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y device-tree-compiler
+
+    - name: 🗃️ Create Output Directory
+      run: mkdir -p src
+
+    - name: 🔧 Decompile DTB to DTS
+      run: |
+        dtc -I dtb -O dts -o src/r36s-clone.dtc clone-factory-base/rf3536k3ka.dtb -@ --symbols
+
+    - name: 📤 Upload DTS Output
+      uses: actions/upload-artifact@v4
+      with:
+        name: r36s-clone-dtc
+        path: src/r36s-clone.dtc
