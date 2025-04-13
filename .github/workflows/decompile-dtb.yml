@@ -21,10 +21,10 @@ jobs:
 
     - name: 🔧 Decompile DTB to DTS
       run: |
-        dtc -I dtb -O dts -o src/r36s-clone.dtc clone-factory-base/rf3536k3ka.dtb -@ --symbols
+        dtc -I dtb -O dts -o src/r36s-clone.dts clone-factory-base/rf3536k3ka.dtb -@ --symbols
 
     - name: 📤 Upload DTS Output
       uses: actions/upload-artifact@v4
       with:
         name: r36s-clone-dtc
-        path: src/r36s-clone.dtc
+        path: src/r36s-clone.dts
