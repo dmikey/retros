@@ -34,17 +34,22 @@ jobs:
 
     - name: ➕ Add config, DTS, and Initramfs
       run: |
-        # Copy .config and DTS
+        # Copy .config and DTS files
         cp ./src/kernel-config.txt linux-rk3326/.config
         cp ./src/r36s-clone.dts linux-rk3326/arch/arm64/boot/dts/rockchip/rk3326-r36s-clone.dts
+
+        # ✅ Add rk3326-odroid-go.dtsi if used
+        cp ./src/rk3326-odroid-go.dtsi linux-rk3326/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
+
+        # Register DTS in the Makefile
         echo 'dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-r36s-clone.dtb' >> linux-rk3326/arch/arm64/boot/dts/rockchip/Makefile
 
-        # Prepare initramfs build path
+        # Initramfs setup
         mkdir -p linux-rk3326/initramfs
         unzip ./src/initramfs.zip -d linux-rk3326/initramfs
         cp ./src/initramfs.conf linux-rk3326/initramfs/initramfs.conf
 
-        # Update config to embed this initramfs
+        # Kernel config for embedded initramfs
         echo 'CONFIG_INITRAMFS_SOURCE="initramfs/initramfs.conf"' >> linux-rk3326/.config
         echo 'CONFIG_BLK_DEV_INITRD=y' >> linux-rk3326/.config
         echo 'CONFIG_RD_GZIP=y' >> linux-rk3326/.config
