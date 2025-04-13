@@ -6,11 +6,12 @@
 
 #include "rk3326-evb-lp3-v10-linux.dts"
 
- / {
-     	model = "R36S Clone Handheld";
-     	compatible = "r36s-clone", "rockchip,rk3326";
+/ {
+	model = "R36S Clone Handheld";
+	compatible = "r36s-clone", "rockchip,rk3326";
+}
 
-		panel@0 {
+panel@0 {
 			compatible = "sitronix,st7703", "simple-panel-dsi";
 			reg = <0x00>;
 			backlight = <0x9e>;
@@ -198,4 +199,4 @@
 		isp0_mipi_in = "/rkisp1@ff4a0000/port/endpoint@0";
 
 		backlight = "/backlight";
-};
+		
