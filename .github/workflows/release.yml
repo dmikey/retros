@@ -1,4 +1,4 @@
-name: Build RK3326 Kernel (Rockchip develop-5.10)
+name: Build RK3326 Kernel (Rockchip + Initramfs)
 
 on:
   workflow_dispatch:
@@ -23,6 +23,8 @@ jobs:
           libncurses-dev \
           crossbuild-essential-arm64 \
           device-tree-compiler \
+          cpio \
+          unzip \
           wget \
           git
 
@@ -30,18 +32,30 @@ jobs:
       run: |
         git clone --depth=1 --branch develop-5.10 https://github.com/rockchip-linux/kernel.git linux-rk3326
 
-    - name: ➕ Add config and DTS
+    - name: ➕ Add config, DTS, and Initramfs
       run: |
+        # Copy .config and DTS
         cp ./src/kernel-config.txt linux-rk3326/.config
         cp ./src/r36s-clone.dts linux-rk3326/arch/arm64/boot/dts/rockchip/rk3326-r36s-clone.dts
         echo 'dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-r36s-clone.dtb' >> linux-rk3326/arch/arm64/boot/dts/rockchip/Makefile
+
+        # Prepare initramfs build path
+        mkdir -p linux-rk3326/initramfs
+        unzip ./src/initramfs.zip -d linux-rk3326/initramfs
+        cp ./src/initramfs.conf linux-rk3326/initramfs/initramfs.conf
+
+        # Update config to embed this initramfs
+        echo 'CONFIG_INITRAMFS_SOURCE="initramfs/initramfs.conf"' >> linux-rk3326/.config
+        echo 'CONFIG_BLK_DEV_INITRD=y' >> linux-rk3326/.config
+        echo 'CONFIG_RD_GZIP=y' >> linux-rk3326/.config
+        echo 'CONFIG_INITRAMFS_COMPRESSION_GZIP=y' >> linux-rk3326/.config
 
     - name: ⚙️ Finalize Kernel Config
       working-directory: linux-rk3326
       run: |
         make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
 
-    - name: 🛠️ Build Kernel + DTBs
+    - name: 🛠️ Build Kernel + DTBs + Initramfs
       working-directory: linux-rk3326
       run: |
         make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs
