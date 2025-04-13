@@ -1,7 +1,9 @@
+/dts-v1/;
 // SPDX-License-Identifier: GPL-2.0+
 /*
  * Custom RK3326 R36S Clone Board
  */
+ 
 #include "rk3326-evb-lp3-v10-linux.dts"
 
  / {
