@@ -3,7 +3,8 @@
  * Custom RK3326 R36S Clone Board
  */
 
-#include "rk3326-odroid-go.dtsi"
+#include "rk3326.dtsi"
+#include "rk3326-evb-lp3-v10.dtsi"
 
  / {
      model = "R36S Clone Handheld";
