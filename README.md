@@ -72,6 +72,7 @@ RetrOS is based on a hybrid build from factory NAND firmware, fused with stable 
 - More Unlock and Utility Apps
 - Update and Standalones and Cores for Offline
 - Verify all compatible Wifi Dongles
+- Port Master
 
 ---
 
