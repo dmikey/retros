@@ -1,0 +1,72 @@
+name: Build EmuELEC RK3326 Kernel (KERNEL.gz + DTB)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-emuelec-kernel:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: 🧰 Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          bc \
+          bison \
+          flex \
+          libssl-dev \
+          libncurses-dev \
+          crossbuild-essential-arm64 \
+          device-tree-compiler \
+          cpio \
+          unzip \
+          wget \
+          git
+
+    - name: 🐧 Clone EmuELEC Kernel Source
+      run: |
+        git clone --depth=1 --branch EmuELEC-4.6 https://github.com/EmuELEC/EmuELEC.git emuelec
+
+    - name: ➕ Prepare Kernel Directory and Apply Config
+      run: |
+        # Extract kernel source path
+        KERNEL_DIR=emuelec/packages/linux/linux.aarch64/linux-5.10
+        mkdir -p emuelec/kernel
+        cp -r $KERNEL_DIR/* emuelec/kernel/
+
+        # Use EmuELEC defconfig (you can swap in your own)
+        cp $KERNEL_DIR/defconfig emuelec/kernel/.config
+
+        # Copy your custom DTS
+        cp ./src/r36s-clone.dts emuelec/kernel/arch/arm64/boot/dts/rockchip/rk3326-r36s-clone.dts
+        echo 'dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-r36s-clone.dtb' >> emuelec/kernel/arch/arm64/boot/dts/rockchip/Makefile
+
+    - name: ⚙️ Finalize Kernel Config
+      working-directory: emuelec/kernel
+      run: |
+        make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
+
+    - name: 🛠️ Build Kernel and DTBs
+      working-directory: emuelec/kernel
+      run: |
+        make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs
+
+    - name: 📦 Package Kernel (KERNEL.gz)
+      working-directory: emuelec/kernel
+      run: |
+        mkdir -p output
+        cp arch/arm64/boot/Image output/KERNEL
+        gzip -f output/KERNEL
+
+    - name: 📤 Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: emuelec-kernel-rk3326
+        path: |
+          emuelec/kernel/output/KERNEL.gz
+          emuelec/kernel/arch/arm64/boot/dts/rockchip/rk3326-r36s-clone.dtb
