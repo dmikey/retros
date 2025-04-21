@@ -30,7 +30,7 @@ jobs:
 
     - name: 🐧 Clone EmuELEC Kernel Source
       run: |
-        git clone --depth=1 --branch EmuELEC-4.6 https://github.com/EmuELEC/EmuELEC.git emuelec
+        git clone --depth=1 --branch v4.7 https://github.com/EmuELEC/EmuELEC.git emuelec
 
     - name: ➕ Prepare Kernel Directory and Apply Config
       run: |
